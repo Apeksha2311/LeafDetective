@@ -1,0 +1,74 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block title %}
+<title>Add Image Page</title>
+{% endblock title %}
+
+{% block css %}
+{% endblock css %}
+
+{% block js %}
+{% endblock js %}
+
+{% block body %}
+<div style="margin-top: 15%;">
+    <!-- heading  -->
+
+    <div class="container  text-center  shadow px-0 col-8 my-4">
+        <h1 class="display-6 text-light bg-success py-2 rounded-3">Add Image for Predication</h1>
+    </div>
+    
+    
+    <!-- form div  -->
+    
+    <div class="container p-5 shadow col-8 bg-dark text-light" >
+    
+        <form action="{% url 'addimage' %}" method="post" enctype="multipart/form-data">
+    
+            {% csrf_token %}
+    
+            {% for fm in forms %}
+    
+            <div class="mb-3">
+                {{fm.label_tag}}
+                {{fm}}
+                <span style="color: red;">{{fm.errors | striptags}}</span>
+            </div>
+    
+            {% endfor %}
+    
+            <div class="mb-3">
+                <center>
+                    <input type="submit" , value="Submit" class="btn btn-success btn-lg border border-2">
+    
+                </center>
+            </div>
+    
+        </form>
+    
+        <script>
+    
+            var x = document.querySelectorAll('div.mb-3');
+            inpd = [];
+            for (var i = 0; i < x.length; i++) {
+                if (i == 2 || i == 4)
+                    continue;
+                inpd.push(x[i]);
+            }
+    
+            inpd.map((v) => { v.style.display = "none" });
+            document.getElementById("id_title").value = "title";
+            document.getElementById("id_cat").value = "4";
+            document.getElementById("id_desc").value = "Discription";
+    
+    
+    
+        </script>
+    
+    </div>
+    
+    
+</div>
+{% endblock body %}

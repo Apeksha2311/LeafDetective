@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block title %}
+<title>Home Page</title>
+{% endblock title %}
+
+{% block css %}
+{% endblock css %}
+
+{% block js %}
+{% endblock js %}
+
+{% block body %}
+
+<!-- form div  -->
+<div class="" style="margin-top:15% ;">
+    <div class="container  text-center  shadow px-0 col-8 my-4">
+        <h1 class="display-6 text-light bg-success py-2 rounded-3">Welcome To Plant Disease Predication..</h1>
+    </div>
+    
+    <div class="container p-5 shadow border border-dark bg-dark text-light col-8 rounded-3" >
+    
+        <form action="{% url 'home' %}" method="post">
+    
+            {% csrf_token %}
+    
+            {% for fm in forms %}
+    
+            <div class="mb-3">
+                {{fm.label_tag}}
+                {{fm}}
+                <span style="color: red;">{{fm.errors | striptags}}</span>
+            </div>
+    
+            {% endfor %}
+    
+            <div class="mb-3">
+                <center>
+                <input type="submit" , value="Login" class="btn btn-lg btn-success display-3 border border-2  " >
+    
+                </center>
+            </div>
+    
+        </form>
+    
+        <div class="mt-3 border-top pt-3">
+    
+    <center>
+        <a href="{% url 'register' %}" class="btn btn-lg btn-success display-3 border border-2 " >Register</a>
+    
+    </center>
+        </div>
+    
+    </div>
+</div>
+
+{% endblock body %}

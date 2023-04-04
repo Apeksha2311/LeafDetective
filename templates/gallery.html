@@ -1,0 +1,76 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block title %}
+<title>Gallery Page</title>
+{% endblock title %}
+
+{% block css %}
+<style>
+    .list-group-item.active {
+        background-color: #007bff;
+        border-color: #007bff;
+        color: #fff;
+    }
+</style>
+
+{% endblock css %}
+
+{% block js %}
+{% endblock js %}
+
+{% block body %}
+
+
+<!-- heading  -->
+
+<div class="container my-2 p-2 text-center text-light bg-success shadow rounded-3">
+    <h1 class="display-6">All Predicted Img</h1>
+</div>
+
+<!-- Gallery view -->
+<div class="container my-3">
+    <div class="row ">
+        <!-- left section -->
+
+        <div class="col-2" style="padding-left: 0;">
+            <ul class="list-group">
+                <li class="list-group-item"><a href="{% url 'gallery' %}" class="text-decoration-none">All Img</a></li>
+                {% for cat in category %}
+                <li class="list-group-item"><a href="{% url 'cat' cat.id %}"
+                        class="text-decoration-none">{{cat.title}}</a></li>
+
+                {% endfor %}
+            </ul>
+
+        </div>
+
+        <!-- right section -->
+        <div class="col-10 bg-dark">
+            <div class="row ">
+                {% for img in Images %}
+                <div class="col-3">
+
+                    <div class="card my-3 shadow " style="width: 13rem;">
+                        <img src="{{img.image.url}}" class="card-img-top" alt="No Image" height="150px">
+                        <div class="card-body ">
+                            <h5 class="card-title">{{img.title}}</h5>
+                            <p class="card-text">Uploaded by {{img.uploaded_by}}</p>
+                            <p class="card-text">Uploaded at {{img.uploaded_at}}</p>
+
+                            <center> <a href="{% url 'view_image' img.id %}" class="btn btn-success">Result</a>
+                            </center>
+                        </div>
+                    </div>
+
+                </div>
+                {% endfor%}
+
+
+            </div>
+        </div>
+    </div>
+
+</div>
+{% endblock body %}

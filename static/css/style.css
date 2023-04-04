@@ -1,0 +1,14 @@
+body{
+    /* background-image: url('https://images.pling.com/img/00/00/65/59/21/1760653/green-leaf-dew-drop-2020-nature-plant-hd-photo-wallpaper-1920x1080-10wallpaper.com.jpg'); */
+    /* background: rgb(176,255,95);
+    background: linear-gradient(45deg, rgba(176,255,95,1) 11%, rgba(37,255,65,1) 48%, rgba(32,255,211,0.9725140056022409) 82%); */
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-image: url('https://images.pexels.com/photos/807598/pexels-photo-807598.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1');
+    background-size: cover;
+    backdrop-filter: blur(3px);
+
+    
+}
+
+

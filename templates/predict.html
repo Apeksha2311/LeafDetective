@@ -1,0 +1,92 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block title %}
+<title>Predict Page</title>
+{% endblock title %}
+
+{% block css %}
+{% endblock css %}
+
+{% block js %}
+{% endblock js %}
+
+{% block body %}
+
+
+<!-- heading  -->
+<div class="container  text-center  col-8 shadow px-0 my-4">
+    <h1 class="display-6 text-light bg-success py-2 rounded-3">Prediction</h1>
+</div>
+
+
+<!-- form div  -->
+
+<div class="container my-4 shadow py-5 text-light bg-dark rounded-3 col-8">
+
+    <article class="blog-post px-3 py-5 p-md-5">
+        <div class="container">
+
+            <section id="one" class="wrapper style1">
+                <div class="item mb-5">
+                    <div class="media">
+                        {% if predictions %}
+                        <center>
+                        <img src="{{ url }}" class="rounded-3">
+
+                        </center>
+                        <center>
+                            <div class="media-body mt-4">
+                                <div class="intro">
+                                    <h2>Crop species & Health status Predictions: </h2>
+                                    {% for prediction in predictions %}
+                                    <p>{{ prediction.pred }}</p>
+                                    {% endfor %}
+                                </div>
+                            </div>
+                        </center>
+
+                        {% else %}
+
+                        <P><img id="output" width="350" height="350"></P>
+                        <div class="media-body">
+                            <h2>{{ title }}</h2>
+                            <strong>ResNet Trained on PlantVillage Dataset</strong>
+                            <div class="intro">
+                                <strong>Note: </strong>Upload image to the django web service serving the classification
+                                model and then predict
+                                <form method="post" enctype=multipart/form-data>
+                                    {% csrf_token %}
+                                    <p>
+                                        <input type="file" accept="image/*" name="myfile" id="file"
+                                            onchange="loadFile(event)" required>
+                                        <input type=submit value="Predict" class="special">
+                                    </p>
+                                    {{ form }}
+                                </form>
+                            </div>
+                        </div>
+                        {% endif %}
+                    </div><!--//media-->
+                    <script>
+                        var loadFile = function (event) {
+                            var image = document.getElementById('output');
+                            image.src = URL.createObjectURL(event.target.files[0]);
+                        };
+                    </script>
+                </div><!--//item-->
+
+                <div>
+                    <center>
+                    <a href="{% url 'addimage' %}" class="btn btn-success btn-lg border border-2 display-3">Predict Next</a>
+
+                    </center>
+                </div>
+        </div><!--//container-->
+    </article>
+
+
+</div>
+
+{% endblock body %}

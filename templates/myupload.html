@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block title %}
+<title>MyUpload Page</title>
+{% endblock title %}
+
+{% block css %}
+<!-- <style> 
+#bg-head{
+    color :044343
+
+}
+
+</style> -->
+{% endblock css %}
+
+{% block js %}
+{% endblock js %}
+
+{% block body %}
+
+
+<!-- heading  -->
+<div class="container  text-center  shadow px-0 my-4">
+    <h1 class="display-6 text-light bg-success py-2 rounded-3">My Prediction History</h1>
+</div>
+
+
+
+<div class="container my-5 px-0 rounded-3" >
+   <table class="table bg-dark text-light rounded-3  ">
+
+
+    <thead>
+        <th>Image</th>
+        <th>Species</th>
+        <th>Predication</th>
+        <th>Uploaded At</th>
+       
+    </thead>
+    {% for img in Images %}
+    <tr class="shadow">
+        <td>
+            <img src="{{img.image.url}}" alt="No image" height="150px" class="rounded-3">
+        </td>
+        <td><h3 class="display-6" >{{img.title}}</h3></td>
+        <td><p class="lead ">{{img.desc}}</p></td>
+        
+        <td><p class="lead ">{{img.uploaded_at}}</p></td>
+        
+    </tr>
+    {% empty %}
+    <h1 class="display-5">No Uploads</h1>
+
+
+
+    {% endfor%}
+
+
+   </table>
+</div>
+
+{% endblock body %}
