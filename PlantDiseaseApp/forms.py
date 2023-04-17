@@ -18,7 +18,7 @@ class RegisterForm(UserCreationForm):
         model = User
         fields = ['first_name' , 'last_name' , 'username' , 'email']
 
-        labels = {
+        labels = { 
             'first_name':'Enter Your Name',
             'last_name':'Enter your Last Name',
             'username':'Enter your Username',
@@ -27,10 +27,10 @@ class RegisterForm(UserCreationForm):
 
         widgets = {
 
-            'first_name':forms.TextInput(attrs={'class':'form-control'}),
-            'last_name':forms.TextInput(attrs={'class':'form-control'}),
+            'first_name':forms.TextInput(attrs={'class':'form-control' ,'required':True}),
+            'last_name':forms.TextInput(attrs={'class':'form-control','required':True}),
             'username':forms.TextInput(attrs={'class':'form-control'}),
-            'email':forms.EmailInput(attrs={'class':'form-control'})
+            'email':forms.EmailInput(attrs={'class':'form-control','required':True})
 
 
 
